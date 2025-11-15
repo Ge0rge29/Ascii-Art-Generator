@@ -41,13 +41,13 @@ def display_ascii_image(ascii_image):
     return "\n".join("".join(row) for row in ascii_image)      
 
 def tournament_selection(scored_population, tournament_size=3):  
-    """Selecteaza un individ prin turneu"""
+    
     tournament = np.random.choice(len(scored_population), tournament_size, replace=False)
     best_idx = max(tournament, key=lambda i: scored_population[i][0])
     return scored_population[best_idx][1]
 
 def crossover(parent1, parent2, crossover_rate=0.8):  
-    """Creeaza doi copii prin incrucisarea a doi parinti"""
+    
     if np.random.random() > crossover_rate:
         return parent1.copy(), parent2.copy()
     
@@ -63,7 +63,7 @@ def crossover(parent1, parent2, crossover_rate=0.8):
     return child1, child2
 
 def mutate(individual, ascii_chars, mutation_rate=0.1):  
-    """Aplica mutatii aleatorii asupra unui individ"""
+    
     mutated = individual.copy()
     height, width = individual.shape
     
@@ -75,7 +75,7 @@ def mutate(individual, ascii_chars, mutation_rate=0.1):
     return mutated
 
 def save_ascii_to_file(ascii_image, filename):  
-    """Salveaza imaginea ASCII intr-un fisier text"""
+    
     with open(filename, 'w') as f:
         f.write(display_ascii_image(ascii_image))
     print(f"[INFO] Imaginea ASCII a fost salvata in {filename}")
